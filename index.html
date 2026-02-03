@@ -1,189 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sbib 💘</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sbib 💘</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: radial-gradient(circle, #ff9acb, #ff5fa2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  background: radial-gradient(circle, #ff9acb, #ff3f9e);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  text-align: center;
+  animation: bgPulse 4s infinite;
+  padding: 20px;
+}
 
-    h1 {
-      font-size: 3rem;
-      color: white;
-      text-shadow: 0 0 15px hotpink;
-      margin-bottom: 10px;
-    }
+@keyframes bgPulse {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.12); }
+  100% { filter: brightness(1); }
+}
 
-    p {
-      font-size: 1.3rem;
-      color: white;
-      margin-bottom: 30px;
-    }
+h1 {
+  font-size: clamp(2.2rem, 8vw, 3rem);
+  color: white;
+  text-shadow: 0 0 20px hotpink;
+  margin-bottom: 10px;
+}
 
-    .buttons {
-      display: flex;
-      gap: 30px;
-    }
+p {
+  font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+  color: white;
+  margin-bottom: 30px;
+}
 
-    button {
-      padding: 22px 45px;
-      font-size: 1.6rem;
-      border: none;
-      border-radius: 60px;
-      background: linear-gradient(135deg, #ff2f92, #ff7abf);
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 0 25px rgba(255,0,130,0.6);
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.2s ease;
-    }
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 320px;
+}
 
-    button:hover {
-      transform: scale(1.1);
-    }
+button {
+  padding: 20px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 60px;
+  background: linear-gradient(135deg, #ff2f92, #ff85c8);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(255,0,130,0.7);
+  position: relative;
+  overflow: hidden;
+}
 
-    /* ❤️ små hjerter */
-    .heart {
-      position: absolute;
-      font-size: 22px;
-      animation: float 1.6s ease-out forwards;
-      pointer-events: none;
-    }
+button:active {
+  transform: scale(0.96);
+}
 
-    @keyframes float {
-      to {
-        opacity: 0;
-        transform: translate(var(--x), var(--y)) scale(1.6);
-      }
-    }
+/* hearts */
+.heart {
+  position: absolute;
+  font-size: 22px;
+  animation: fly 2s ease-out forwards;
+  pointer-events: none;
+}
 
-    /* 😵‍💫 screen shake */
-    @keyframes screenShake {
-      0% { transform: translate(0,0); }
-      25% { transform: translate(6px, -6px); }
-      50% { transform: translate(-6px, 6px); }
-      75% { transform: translate(6px, 6px); }
-      100% { transform: translate(0,0); }
-    }
+@keyframes fly {
+  to {
+    transform: translate(var(--x), var(--y)) scale(1.8);
+    opacity: 0;
+  }
+}
 
-    /* ❤️ gigantisk hjerte */
-    @keyframes bigHeart {
-      0% { transform: scale(0); opacity: 0; }
-      40% { transform: scale(1.4); opacity: 1; }
-      100% { transform: scale(1); opacity: 0; }
-    }
+/* shake */
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(6px, -6px); }
+  50% { transform: translate(-6px, 6px); }
+  75% { transform: translate(6px, 6px); }
+  100% { transform: translate(0); }
+}
 
-    /* 💬 pop-tekst */
-    @keyframes popText {
-      0% { transform: scale(0); opacity: 0; }
-      60% { transform: scale(1.3); opacity: 1; }
-      100% { transform: scale(1); }
-    }
+/* overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 999;
+}
 
-    .overlay {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.big-heart {
+  font-size: min(60vw, 220px);
+  animation: bigHeart 2s ease forwards;
+}
 
-    .big-heart {
-      font-size: 200px;
-      animation: bigHeart 1.5s ease forwards;
-    }
+@keyframes bigHeart {
+  0% { transform: scale(0); opacity: 0; }
+  40% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
 
-    .love-text {
-      position: absolute;
-      color: white;
-      font-size: 3rem;
-      text-shadow: 0 0 20px hotpink;
-      animation: popText 1.2s ease forwards;
-    }
+.love-text {
+  color: white;
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  margin-top: 15px;
+  text-shadow: 0 0 25px hotpink;
+  animation: popText 1.4s ease forwards;
+}
 
-    /* GIF-er */
-    .gif {
-      position: absolute;
-      width: 130px;
-    }
+@keyframes popText {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); }
+}
 
-    .gif1 { top: 15px; left: 15px; }
-    .gif2 { top: 15px; right: 15px; }
-    .gif3 { bottom: 15px; left: 15px; }
-    .gif4 { bottom: 15px; right: 15px; }
+/* final screen */
+.final {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #ff5fa2, #ff1f7a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+  z-index: 2000;
+  animation: fadeIn 1.5s ease forwards;
+  padding: 20px;
+}
 
-  </style>
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.final h2 {
+  font-size: clamp(2.2rem, 8vw, 3.2rem);
+  text-shadow: 0 0 30px hotpink;
+}
+
+.final p {
+  font-size: clamp(1.2rem, 4.5vw, 1.6rem);
+  margin-top: 15px;
+}
+
+/* gifs – skjules på veldig små skjermer */
+.gif {
+  position: absolute;
+  width: 90px;
+}
+
+@media (max-width: 360px) {
+  .gif { display: none; }
+}
+
+.gif1 { top: 10px; left: 10px; }
+.gif2 { top: 10px; right: 10px; }
+.gif3 { bottom: 10px; left: 10px; }
+.gif4 { bottom: 10px; right: 10px; }
+
+</style>
 </head>
 
 <body>
 
-  <img class="gif gif1" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
-  <img class="gif gif2" src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif">
-  <img class="gif gif3" src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif">
-  <img class="gif gif4" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+<img class="gif gif1" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+<img class="gif gif2" src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif">
+<img class="gif gif3" src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif">
+<img class="gif gif4" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
 
-  <h1>Sbib… 💋</h1>
-  <p>Will you be <b>my</b> Valentine tonight? 🔥</p>
+<h1>Sbib… 💋</h1>
+<p>Will you be <b>my</b> Valentine tonight? 🔥</p>
 
-  <div class="buttons">
-    <button onclick="explode(event)">Yes 😘</button>
-    <button onclick="explode(event)">Obviously 💖</button>
-  </div>
+<div class="buttons">
+  <button onclick="goCrazy(event)">Yes 😘</button>
+  <button onclick="goCrazy(event)">Obviously 💖</button>
+</div>
 
-  <script>
-    function explode(e) {
-      const btn = e.currentTarget;
+<audio id="music" preload="auto">
+  <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_6c5fa5c3a1.mp3" type="audio/mpeg">
+</audio>
 
-      // Screen shake
-      document.body.style.animation = "screenShake 0.5s";
-      setTimeout(() => document.body.style.animation = "", 500);
+<script>
+function goCrazy(e) {
+  const btn = e.currentTarget;
+  const music = document.getElementById("music");
+  music.play().catch(()=>{});
 
-      // Overlay
-      const overlay = document.createElement("div");
-      overlay.className = "overlay";
-      document.body.appendChild(overlay);
+  document.body.style.animation = "shake 0.5s";
+  setTimeout(() => document.body.style.animation = "", 500);
 
-      // Giant heart
-      const bigHeart = document.createElement("div");
-      bigHeart.className = "big-heart";
-      bigHeart.innerHTML = "❤️";
-      overlay.appendChild(bigHeart);
+  const overlay = document.createElement("div");
+  overlay.className = "overlay";
+  document.body.appendChild(overlay);
 
-      // Text
-      const text = document.createElement("div");
-      text.className = "love-text";
-      text.innerHTML = "YOU’RE MINE NOW 😘🔥";
-      overlay.appendChild(text);
+  const heart = document.createElement("div");
+  heart.className = "big-heart";
+  heart.innerHTML = "❤️";
+  overlay.appendChild(heart);
 
-      // Heart explosion
-      for (let i = 0; i < 60; i++) {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = ["❤️","💖","💋","🔥","😍"][Math.floor(Math.random()*5)];
-        heart.style.left = "50%";
-        heart.style.top = "50%";
-        heart.style.setProperty("--x", (Math.random()-0.5)*500 + "px");
-        heart.style.setProperty("--y", (Math.random()-1)*500 + "px");
-        btn.appendChild(heart);
-        setTimeout(() => heart.remove(), 1600);
-      }
+  const text = document.createElement("div");
+  text.className = "love-text";
+  text.innerHTML = "NO ESCAPE NOW 😏🔥";
+  overlay.appendChild(text);
 
-      setTimeout(() => overlay.remove(), 1800);
-    }
-  </script>
+  for (let i = 0; i < 80; i++) {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.innerHTML = ["❤️","💖","💋","🔥","😍","💘"][Math.floor(Math.random()*6)];
+    h.style.left = "50%";
+    h.style.top = "50%";
+    h.style.setProperty("--x", (Math.random()-0.5)*500 + "px");
+    h.style.setProperty("--y", (Math.random()-1)*500 + "px");
+    btn.appendChild(h);
+    setTimeout(() => h.remove(), 2000);
+  }
+
+  setTimeout(() => {
+    overlay.remove();
+    const final = document.createElement("div");
+    final.className = "final";
+    final.innerHTML = `
+      <h2>Happy Valentine’s, Sbib 💘</h2>
+      <p>You’re officially stuck with me 😘🔥</p>
+    `;
+    document.body.appendChild(final);
+  }, 2200);
+}
+</script>
 
 </body>
 </html>
