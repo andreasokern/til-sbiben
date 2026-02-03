@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sbib 💘</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: radial-gradient(circle, #ff9acb, #ff5fa2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: white;
+      text-shadow: 0 0 15px hotpink;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 30px;
+    }
+
+    button {
+      padding: 22px 45px;
+      font-size: 1.6rem;
+      border: none;
+      border-radius: 60px;
+      background: linear-gradient(135deg, #ff2f92, #ff7abf);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255,0,130,0.6);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 22px;
+      animation: float 1.6s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      to {
+        opacity: 0;
+        transform: translate(var(--x), var(--y)) scale(1.6);
+      }
+    }
+
+    .gif {
+      position: absolute;
+      width: 130px;
+    }
+
+    .gif1 { top: 15px; left: 15px; }
+    .gif2 { top: 15px; right: 15px; }
+    .gif3 { bottom: 15px; left: 15px; }
+    .gif4 { bottom: 15px; right: 15px; }
+  </style>
+</head>
+<body>
+
+  <img class="gif gif1" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+  <img class="gif gif2" src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif">
+  <img class="gif gif3" src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif">
+  <img class="gif gif4" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+
+  <h1>Sbib… 💋</h1>
+  <p>Will you be <b>my</b> Valentine tonight? 🔥</p>
+
+  <div class="buttons">
+    <button onclick="explode(event)">Yes 😘</button>
+    <button onclick="explode(event)">Obviously 💖</button>
+  </div>
+
+  <script>
+    function explode(e) {
+      const btn = e.currentTarget;
+      alert("You just said yes… no takebacks 😏❤️");
+
+      for (let i = 0; i < 35; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = ["❤️","💖","🔥","💋"][Math.floor(Math.random()*4)];
+        heart.style.left = "50%";
+        heart.style.top = "50%";
+        heart.style.setProperty("--x", (Math.random()-0.5)*350 + "px");
+        heart.style.setProperty("--y", (Math.random()-1)*350 + "px");
+        btn.appendChild(heart);
+        setTimeout(() => heart.remove(), 1600);
+      }
+    }
+  </script>
+
+</body>
+</html>
